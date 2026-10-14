@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1d3a">
+<title>حراج القهالي</title>
+<style>
+:root{--navy:#0b1d3a;--navy2:#142b50;--red:#a51f32;--red2:#c32c40;--bg:#f3f5f9;--white:#fff;--muted:#718096;--line:#e4e9f1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#172033;font-family:Tahoma,Arial,sans-serif;padding-bottom:84px}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+header{background:var(--navy);color:white;padding:15px 16px 17px;position:sticky;top:0;z-index:5;box-shadow:0 4px 15px #08152c22}
+.top{max-width:980px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:25px;font-weight:900;letter-spacing:-1px}.brand .haraj{color:#66a9ff}.brand .quhali{color:#ff6575}
+.top-actions{display:flex;gap:8px}.icon-btn{background:#ffffff17;color:white;border:1px solid #ffffff22;border-radius:12px;width:40px;height:40px;font-size:18px}
+.header-search{max-width:980px;margin:13px auto 0;display:flex;gap:8px}
+.header-search input{width:100%;border:0;border-radius:12px;padding:12px 14px;background:#fff;color:#172033;outline:none}
+.hero{max-width:980px;margin:16px auto 0;padding:0 14px}
+.hero-card{background:linear-gradient(120deg,#0b1d3a,#203e6c);border-radius:20px;padding:22px;color:#fff;position:relative;overflow:hidden}
+.hero-card:after{content:"ق";position:absolute;font-size:150px;font-weight:900;color:#ffffff0b;left:10px;top:-35px}
+.hero h1{font-size:23px;margin:0 0 8px;position:relative;z-index:1}.hero p{font-size:13px;color:#dbe7fa;line-height:1.8;margin:0 0 15px;position:relative;z-index:1}
+.primary{background:var(--red);color:white;border-radius:12px;padding:12px 16px;font-weight:bold;position:relative;z-index:1}
+main{max-width:980px;margin:auto;padding:0 14px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:22px 0 12px}.section-head h2{font-size:18px;margin:0}.muted{color:var(--muted);font-size:12px}
+.categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 4px 11px;text-align:center;box-shadow:0 3px 9px #15274808;color:#263248}
+.cat .emoji{display:grid;place-items:center;margin:0 auto 8px;width:42px;height:42px;border-radius:13px;font-size:23px}
+.cat span:last-child{font-size:12px;font-weight:bold}
+.cat.active{outline:2px solid var(--navy)}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;min-width:0}
+.prod-img{height:135px;width:100%;object-fit:cover;background:#e9edf4;display:grid;place-items:center;font-size:40px;color:#8b96a8}
+.prod-body{padding:11px}.badge{font-size:10px;border-radius:6px;background:#eaf0fa;color:#21416e;padding:5px 7px;display:inline-block}
+.prod-body h3{font-size:14px;margin:9px 0;line-height:1.5;overflow-wrap:anywhere}
+.price{font-size:16px;font-weight:900;color:var(--red)}
+.meta{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.7}
+.prod-actions{display:flex;gap:6px;margin-top:10px}.small-btn{border-radius:9px;padding:8px 6px;font-size:12px;font-weight:bold;background:#edf1f7;color:#243653;flex:1}.liked{color:var(--red)!important;background:#fff0f2!important}
+.bottom-nav{position:fixed;z-index:8;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;box-shadow:0 -5px 20px #0b1d3a0b;padding:7px 4px calc(7px + env(safe-area-inset-bottom))}
+.nav-inner{width:100%;max-width:680px;display:flex;justify-content:space-around;align-items:center}
+.nav-item{background:transparent;color:#7b879a;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:52px;padding:3px}
+.nav-item .ni{font-size:21px}.nav-item.active{color:var(--navy);font-weight:bold}
+.nav-item.post .ni{background:var(--red);color:#fff;width:48px;height:42px;border-radius:15px;display:grid;place-items:center;font-size:28px;margin-top:-18px;box-shadow:0 5px 12px #a51f3244}
+.page{display:none}.page.active{display:block}
+.empty{grid-column:1/-1;text-align:center;padding:35px 12px;color:var(--muted);background:#fff;border-radius:15px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0}
+.panel h2{margin-top:0;font-size:18px}
+.field{margin:12px 0}.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #dce2ec;border-radius:10px;background:#fff;outline-color:#487bc0}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+.full{width:100%}.secondary{background:#edf1f7;color:#243653;border-radius:11px;padding:12px;font-weight:bold}
+.link-btn{background:transparent;color:var(--red);font-weight:bold}
+.profile-top{display:flex;align-items:center;gap:14px}
+.avatar{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:#e8eef8;font-size:32px;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.service{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:12px 0;font-size:14px}.service:last-child{border:0}
+.service-actions{display:flex;gap:6px}.service-actions a{padding:8px 10px;border-radius:9px;text-decoration:none;background:#e9f7ef;color:#157347;font-size:12px;font-weight:bold}
+.overlay{display:none;position:fixed;inset:0;z-index:20;background:#071326a8;overflow:auto;padding:18px}.overlay.show{display:block}
+.modal{background:white;border-radius:18px;padding:20px;max-width:520px;margin:12px auto;box-shadow:0 20px 60px #0003}
+.modal h2{margin:0 0 14px;font-size:20px}.close-row{display:flex;justify-content:space-between;align-items:center}
+.toast{position:fixed;z-index:30;bottom:95px;left:50%;transform:translateX(-50%);background:var(--navy);color:white;padding:12px 18px;border-radius:12px;display:none;max-width:90%;text-align:center;font-size:13px}
+.confetti{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:#071326a8;padding:20px}
+.confetti.show{display:flex}.celebrate{background:white;border-radius:24px;text-align:center;padding:28px 22px;max-width:350px;width:100%;box-shadow:0 20px 70px #0004;animation:pop .35s ease-out}
+.celebrate .big{font-size:55px}.celebrate h2{color:var(--red);font-size:28px;margin:10px 0}.celebrate p{line-height:1.8;color:#59677c;font-size:14px}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.comments{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.comment-line{font-size:12px;padding:6px 0;line-height:1.6}
+.note{font-size:12px;color:var(--muted);line-height:1.8}
+@media(min-width:600px){.categories{grid-template-columns:repeat(8,minmax(0,1fr))}.products{grid-template-columns:repeat(3,minmax(0,1fr))}.prod-img{height:175px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top">
+  <div class="brand"><span class="haraj">حراج</span> <span class="quhali">القهالي</span></div>
+  <div class="top-actions">
+   <button class="icon-btn" title="المفضلة" onclick="showPage('favorites')">♡</button>
+   <button class="icon-btn" title="حسابي" onclick="showPage('account')">👤</button>
+  </div>
+ </div>
+ <div class="header-search"><input id="search" placeholder="ابحث عن سيارة، جوال، أرض..." oninput="renderProducts()"></div>
+</header>
+
+<section id="homePage" class="page active">
+ <div class="hero"><div class="hero-card">
+  <h1>بيع واشترِ بكل سهولة!</h1>
+  <p>حراج القهالي يجمع لك المنتجات الجديدة والمستعملة في مكان واحد.<br>اعرض سلعتك وتواصل مباشرة مع المهتمين.</p>
+  <button class="primary" onclick="openPost()">＋ أضف إعلانك الآن</button>
+ </div></div>
+ <main>
+  <div class="section-head"><h2>تصفّح الأقسام</h2><span class="muted">اختر القسم المناسب</span></div>
+  <div id="categories" class="categories"></div>
+  <div class="section-head"><h2 id="productTitle">أحدث الإعلانات</h2><span id="count" class="muted"></span></div>
+  <div id="products" class="products"></div>
+ </main>
+</section>
+
+<section id="favoritesPage" class="page"><main>
+ <div class="section-head"><h2>♡ المفضلة</h2></div>
+ <div id="favoritesList" class="products"></div>
+</main></section>
+
+<section id="messagesPage" class="page"><main>
+ <div class="panel"><h2>💬 المحادثات والرسائل</h2>
+  <p class="note">هذه نسخة تجريبية للواجهة. الرسائل هنا تُحفظ على هذا الجهاز فقط، ولا تصل إلى بائع آخر إلا بعد ربط التطبيق بخادم ومحادثات حقيقية.</p>
+  <div id="messagesList"></div>
+ </div>
+</main></section>
+
+<section id="accountPage" class="page"><main>
+ <div class="panel">
+  <div class="profile-top"><div class="avatar" id="avatar">👤</div><div><h2 id="profileName" style="margin:0 0 6px">زائر حراج القهالي</h2><div class="muted" id="profileEmail">سجّل الدخول لإدارة حسابك</div></div></div>
+  <div class="row" style="margin-top:16px"><button class="primary" onclick="openAuth()">دخول / إنشاء حساب</button><button class="secondary" onclick="editProfile()">تعديل الملف الشخصي</button></div>
+ </div>
+ <div class="panel"><h2>📦 إعلاناتي</h2><div id="myAds" class="products"></div></div>
+ <div class="panel"><h2>⚙️ الإعدادات</h2>
+  <div class="field"><label>لغة التطبيق / App language</label><select id="language" onchange="changeLanguage()"><option value="ar">العربية</option><option value="en">English (واجهة تجريبية)</option></select></div>
+  <p class="note">تغيير اللغة في هذه النسخة تجريبي، وتحتاج الترجمة الكاملة إلى استكمال جميع نصوص الواجهة.</p>
+ </div>
+ <div class="panel"><h2>☎️ خدمة العملاء</h2>
+  <div class="service"><span>711958844</span><div class="service-actions"><a href="tel:711958844">اتصال</a><a target="_blank" rel="noopener" href="https://wa.me/967711958844">واتساب</a></div></div>
+  <div class="service"><span>733969919</span><div class="service-actions"><a href="tel:733969919">اتصال</a><a target="_blank" rel="noopener" href="https://wa.me/967733969919">واتساب</a></div></div>
+ </div>
+</main></section>
+
+<nav class="bottom-nav"><div class="nav-inner">
+ <button class="nav-item active" data-page="home" onclick="showPage('home')"><span class="ni">⌂</span><span>الرئيسية</span></button>
+ <button class="nav-item" data-page="favorites" onclick="showPage('favorites')"><span class="ni">♡</span><span>المفضلة</span></button>
+ <button class="nav-item post" onclick="openPost()"><span class="ni">＋</span><span>نشر إعلان</span></button>
+ <button class="nav-item" data-page="messages" onclick="showPage('messages')"><span class="ni">▤</span><span>المحادثات</span></button>
+ <button class="nav-item" data-page="account" onclick="showPage('account')"><span class="ni">♙</span><span>حسابي</span></button>
+</div></nav>
+
+<div class="overlay" id="postOverlay"><div class="modal">
+ <div class="close-row"><h2>＋ نشر إعلان جديد</h2><button class="link-btn" onclick="closeOverlay('postOverlay')">إغلاق ✕</button></div>
+ <form id="postForm">
+  <div class="field"><label>اسم السلعة *</label><input id="pName" maxlength="90" required placeholder="مثال: سيارة تويوتا"></div>
+  <div class="row"><div class="field"><label>السعر بالريال اليمني *</label><input id="pPrice" type="number" min="0" required></div>
+  <div class="field"><label>الحالة</label><select id="pCondition"><option value="used">مستعمل</option><option value="new">جديد</option></select></div></div>
+  <div class="field"><label>القسم</label><select id="pCategory"></select></div>
+  <div class="field"><label>المدينة / المحافظة</label><input id="pCity" maxlength="70" placeholder="مثال: المكلا"></div>
+  <div class="field"><label>رقم واتساب مع مفتاح الدولة *</label><input id="pPhone" type="tel" required placeholder="9677XXXXXXXX"></div>
+  <div class="field"><label>تفاصيل الإعلان</label><textarea id="pDescription" rows="3" maxlength="700" placeholder="اكتب حالة السلعة ومواصفاتها..."></textarea></div>
+  <div class="field"><label>صورة السلعة (اختياري)</label><input id="pPhoto" type="file" accept="image/*"><div class="note">اختر صورة لا يتجاوز حجمها 500 كيلوبايت.</div></div>
+  <button class="primary full" id="publishBtn" type="submit">نشر الإعلان ✨</button>
+ </form>
+</div></div>
+
+<div class="overlay" id="authOverlay"><div class="modal">
+ <div class="close-row"><h2 id="authTitle">تسجيل الدخول</h2><button class="link-btn" onclick="closeOverlay('authOverlay')">إغلاق ✕</button></div>
+ <form id="authForm">
+  <div class="field"><label>الاسم</label><input id="uName" maxlength="70" placeholder="اسمك"></div>
+  <div class="field"><label>البريد الإلكتروني</label><input id="uEmail" type="email" placeholder="name@example.com"></div>
+  <div class="field"><label>كلمة المرور (للعرض التجريبي فقط)</label><input id="uPassword" type="password" minlength="4" placeholder="أدخل كلمة مرور تجريبية"></div>
+  <button class="primary full" type="submit">متابعة تجريبية</button>
+ </form>
+ <button class="secondary full" style="margin-top:9px" onclick="googleDemo()">🌐 المتابعة باستخدام Google</button>
+ <p class="note">تنبيه: لا يتم إنشاء حساب آمن في هذه النسخة. تسجيل Google الحقيقي يتطلب إعداد OAuth وخادم مصادقة.</p>
+</div></div>
+
+<div class="overlay" id="editOverlay"><div class="modal">
+ <div class="close-row"><h2>تعديل الملف الشخصي</h2><button class="link-btn" onclick="closeOverlay('editOverlay')">إغلاق ✕</button></div>
+ <div class="field"><label>الاسم الظاهر</label><input id="editName" maxlength="70"></div>
+ <div class="field"><label>صورة شخصية</label><input id="editPhoto" type="file" accept="image/*"></div>
+ <button class="primary full" onclick="saveProfile()">حفظ التعديلات</button>
+</div></div>
+
+<div class="overlay" id="commentOverlay"><div class="modal">
+ <div class="close-row"><h2>💬 التعليقات</h2><button class="link-btn" onclick="closeOverlay('commentOverlay')">إغلاق ✕</button></div>
+ <div id="commentList"></div>
+ <div class="field"><label>أضف تعليقاً</label><input id="commentInput" maxlength="300" placeholder="اكتب تعليقك..."></div>
+ <button class="primary full" onclick="addComment()">إرسال التعليق</button>
+ <p class="note">التعليقات محفوظة محلياً في هذه النسخة التجريبية.</p>
+</div></div>
+
+<div class="confetti" id="celebration"><div class="celebrate">
+ <div class="big">🎉✨🎊</div><h2>القهالي!</h2><p>مبروك! تم نشر إعلانك بنجاح على هذا الجهاز.<br>نتمنى لك بيعاً موفقاً وصفقة سعيدة.</p>
+ <button class="primary" onclick="closeCelebration()">رائع، شكراً!</button>
+</div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+const STORE='haraj_alquhali_v2';
+const categories=[
+ {name:'سيارات',emoji:'🚘',color:'#ffe8e8',ink:'#b42332'},
+ {name:'إلكترونيات',emoji:'💻',color:'#e4efff',ink:'#1759a6'},
+ {name:'أثاث ومنزل',emoji:'🛋️',color:'#e2f7e9',ink:'#178344'},
+ {name:'عقارات',emoji:'🏢',color:'#fff1cf',ink:'#9b7100'},
+ {name:'أراضي',emoji:'🏞️',color:'#e8e9ec',ink:'#222831'},
+ {name:'دراجات نارية',emoji:'🏍️',color:'#ffead8',ink:'#c75b12'},
+ {name:'ملابس',emoji:'👕',color:'#ffe3f0',ink:'#c02f7d'},
+ {name:'معدات',emoji:'🛠️',color:'#e5e7eb',ink:'#555f6d'}
+];
+let data={ads:[],favorites:[],profile:{name:'',email:'',photo:''},comments:{},messages:[]};
+let selectedCategory='الكل',commentAdId=null;
+try{const d=JSON.parse(localStorage.getItem(STORE)||'{}');data={...data,...d};}catch(e){}
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(data));return true}catch(e){toast('مساحة التخزين ممتلئة. جرّب حذف إعلان أو صورة أصغر.');return false}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function money(n){return Number(n).toLocaleString('en-US')+' ريال يمني'}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2800)}
+function renderCategories(){
+ const root=document.getElementById('categories');
+ root.innerHTML=categories.map(c=>`<button class="cat ${selectedCategory===c.name?'active':''}" onclick="selectCategory('${c.name}')" style="${selectedCategory===c.name?'outline-color:'+c.ink:''}"><span class="emoji" style="background:${c.color};color:${c.ink}">${c.emoji}</span><span>${c.name}</span></button>`).join('');
+ document.getElementById('pCategory').innerHTML=categories.map(c=>`<option>${c.name}</option>`).join('')+'<option>أخرى</option>';
+}
+function selectCategory(n){selectedCategory=selectedCategory===n?'الكل':n;renderCategories();renderProducts()}
+function showPage(p){
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ const el=document.getElementById(p+'Page');if(el)el.classList.add('active');
+ document.querySelectorAll('.nav-item[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+ if(p==='favorites')renderFavorites();if(p==='account')renderAccount();if(p==='messages')renderMessages();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function imageMarkup(ad){return ad.photo?`<img class="prod-img" src="${ad.photo}" alt="${esc(ad.name)}">`:`<div class="prod-img">${(categories.find(c=>c.name===ad.category)||{emoji:'🛍️'}).emoji}</div>`}
+function cardMarkup(ad,owner=false){
+ const liked=data.favorites.includes(ad.id),cat=categories.find(c=>c.name===ad.category);
+ const comments=data.comments[ad.id]||[];
+ return `<article class="card">${imageMarkup(ad)}<div class="prod-body">
+ <span class="badge" style="${cat?'color:'+cat.ink+';background:'+cat.color:''}">${esc(ad.condition==='new'?'جديد':'مستعمل')} · ${esc(ad.category)}</span>
+ <h3>${esc(ad.name)}</h3><div class="price">${money(ad.price)}</div>
+ <div class="meta">📍 ${esc(ad.city||'الموقع غير محدد')}<br>👤 ${esc(ad.owner||'مستخدم حراج')}</div>
+ <div class="prod-actions"><button class="small-btn ${liked?'liked':''}" onclick="toggleLike('${ad.id}')">${liked?'♥':'♡'} ${ad.likes||0}</button><button class="small-btn" onclick="openComments('${ad.id}')">💬 ${comments.length}</button></div>
+ <div class="prod-actions"><button class="small-btn" onclick="contactSeller('${ad.id}')">واتساب</button><button class="small-btn" onclick="shareAd('${ad.id}')">مشاركة ↗</button></div>
+ ${owner?`<div class="prod-actions"><button class="small-btn" onclick="editAd('${ad.id}')">تعديل</button><button class="small-btn" onclick="deleteAd('${ad.id}')">حذف</button></div>`:''}
+ </div></article>`;
+}
+function renderProducts(){
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ const list=data.ads.filter(a=>(selectedCategory==='الكل'||a.category===selectedCategory)&&[a.name,a.category,a.city,a.description].join(' ').toLowerCase().includes(q));
+ document.getElementById('productTitle').textContent=selectedCategory==='الكل'?'أحدث الإعلانات':selectedCategory;
+ document.getElementById('count').textContent=list.length+' إعلان';
+ document.getElementById('products').innerHTML=list.length?list.map(a=>cardMarkup(a)).join(''):'<div class="empty">📦<br><br>لا توجد إعلانات في هذا القسم حالياً.</div>';
+}
+function renderFavorites(){const list=data.ads.filter(a=>data.favorites.includes(a.id));document.getElementById('favoritesList').innerHTML=list.length?list.map(a=>cardMarkup(a)).join(''):'<div class="empty">♡<br><br>لم تضف إعلانات إلى المفضلة بعد.</div>'}
+function toggleLike(id){const a=data.ads.find(x=>x.id===id);if(!a)return;if(data.favorites.includes(id)){data.favorites=data.favorites.filter(x=>x!==id);a.likes=Math.max(0,(a.likes||0)-1)}else{data.favorites.push(id);a.likes=(a.likes||0)+1}persist();renderProducts();renderFavorites()}
+function contactSeller(id){const a=data.ads.find(x=>x.id===id);if(!a)return;const phone=String(a.phone||'').replace(/\D/g,'');if(!phone){toast('لا يوجد رقم تواصل لهذا الإعلان');return}window.open('https://wa.me/'+phone+'?text='+encodeURIComponent('السلام عليكم، أنا مهتم بإعلانك: '+a.name),'_blank')}
+async function shareAd(id){const a=data.ads.find(x=>x.id===id);if(!a)return;const text='إعلان من حراج القهالي: '+a.name+' - '+money(a.price)+' - '+(a.city||'');if(navigator.share){try{await navigator.share({title:'حراج القهالي',text})}catch(e){}}else{try{await navigator.clipboard.writeText(text);toast('تم نسخ تفاصيل الإعلان للمشاركة')}catch(e){toast(text)}}}
+function openComments(id){commentAdId=id;renderComments();document.getElementById('commentOverlay').classList.add('show')}
+function renderComments(){const list=data.comments[commentAdId]||[];document.getElementById('commentList').innerHTML=list.length?list.map(c=>`<div class="comment-line"><b>${esc(c.name)}</b>: ${esc(c.text)}</div>`).join(''):'<p class="note">لا توجد تعليقات بعد.</p>'}
+function addComment(){const input=document.getElementById('commentInput'),text=input.value.trim();if(!text)return;data.comments[commentAdId]=data.comments[commentAdId]||[];data.comments[commentAdId].push({name:data.profile.name||'زائر',text});if(persist()){input.value='';renderComments();renderProducts();toast('تمت إضافة التعليق على هذا الجهاز')}}
+function openPost(){document.getElementById('postOverlay').classList.add('show')}
+function closeOverlay(id){document.getElementById(id).classList.remove('show')}
+function fileAsData(file,max){return new Promise((resolve,reject)=>{if(!file)return resolve('');if(!file.type.startsWith('image/'))return reject(Error('الصورة غير صالحة'));if(file.size>max)return reject(Error('حجم الصورة كبير؛ اختر صورة أصغر من '+Math.round(max/1024)+' كيلوبايت'));const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+document.getElementById('postForm').addEventListener('submit',async e=>{
+ e.preventDefault();const btn=document.getElementById('publishBtn');btn.disabled=true;
+ try{
+  const photo=await fileAsData(document.getElementById('pPhoto').files[0],500*1024);
+  const ad={id:Date.now().toString()+Math.random().toString(36).slice(2,7),name:document.getElementById('pName').value.trim(),price:Number(document.getElementById('pPrice').value),condition:document.getElementById('pCondition').value,category:document.getElementById('pCategory').value,city:document.getElementById('pCity').value.trim(),phone:document.getElementById('pPhone').value.trim(),description:document.getElementById('pDescription').value.trim(),photo,owner:data.profile.name||'زائر حراج القهالي',likes:0,created:Date.now()};
+  if(!ad.name||!ad.phone||!Number.isFinite(ad.price)||ad.price<0){toast('يرجى مراجعة بيانات الإعلان');return}
+  data.ads.unshift(ad);if(!persist()){data.ads.shift();return}
+  e.target.reset();closeOverlay('postOverlay');selectedCategory='الكل';renderCategories();renderProducts();showPage('home');document.getElementById('celebration').classList.add('show');
+ }catch(err){toast(err.message||'تعذر حفظ الإعلان')}finally{btn.disabled=false}
+});
+function closeCelebration(){document.getElementById('celebration').classList.remove('show')}
+function renderAccount(){
+ document.getElementById('profileName').textContent=data.profile.name||'زائر حراج القهالي';
+ document.getElementById('profileEmail').textContent=data.profile.email||'سجّل الدخول لإدارة حسابك';
+ document.getElementById('avatar').innerHTML=data.profile.photo?`<img src="${data.profile.photo}" alt="الصورة الشخصية">`:'👤';
+ const list=data.ads.filter(a=>a.owner===(data.profile.name||'زائر حراج القهالي'));
+ document.getElementById('myAds').innerHTML=list.length?list.map(a=>cardMarkup(a,true)).join(''):'<div class="empty">لا توجد إعلانات مرتبطة باسمك على هذا الجهاز.</div>';
+}
+function openAuth(){document.getElementById('authOverlay').classList.add('show')}
+document.getElementById('authForm').addEventListener('submit',e=>{e.preventDefault();data.profile.name=document.getElementById('uName').value.trim()||'مستخدم حراج';data.profile.email=document.getElementById('uEmail').value.trim();if(persist()){closeOverlay('authOverlay');renderAccount();toast('تم حفظ الملف محلياً كتجربة فقط')}})
+function googleDemo(){toast('تسجيل Google الحقيقي يحتاج إعداد OAuth وخادم مصادقة');}
+function editProfile(){document.getElementById('editName').value=data.profile.name||'';document.getElementById('editOverlay').classList.add('show')}
+async function saveProfile(){try{const name=document.getElementById('editName').value.trim();const photo=await fileAsData(document.getElementById('editPhoto').files[0],500*1024);const old={...data.profile};data.profile.name=name||old.name||'مستخدم حراج';if(photo)data.profile.photo=photo;if(!persist()){data.profile=old;return}closeOverlay('editOverlay');renderAccount();toast('تم تحديث الملف الشخصي على هذا الجهاز')}catch(e){toast(e.message)}}
+function editAd(id){const a=data.ads.find(x=>x.id===id);if(!a)return;const name=prompt('اسم السلعة',a.name);if(name===null)return;const price=prompt('السعر بالريال اليمني',a.price);if(price===null)return;if(!name.trim()||!Number.isFinite(Number(price))||Number(price)<0){toast('البيانات غير صحيحة');return}const old={...a};a.name=name.trim();a.price=Number(price);if(!persist()){Object.assign(a,old);return}renderProducts();renderAccount();toast('تم تعديل الإعلان')}
+function deleteAd(id){if(!confirm('هل تريد حذف هذا الإعلان؟'))return;const old=data.ads;data.ads=data.ads.filter(a=>a.id!==id);data.favorites=data.favorites.filter(x=>x!==id);if(!persist()){data.ads=old;return}renderProducts();renderAccount();renderFavorites()}
+function renderMessages(){const root=document.getElementById('messagesList');root.innerHTML=data.messages.length?data.messages.map(m=>`<div class="service"><span>💬 ${esc(m.title)}</span><button class="secondary" onclick="toast('المحادثة الحقيقية تحتاج إلى خادم')">فتح</button></div>`).join(''):'<div class="empty">💬<br><br>لا توجد محادثات حتى الآن.<p class="note">ابدأ بالتواصل مع البائع عبر واتساب. المحادثات الداخلية ستعمل بعد ربط الخادم.</p></div>'}
+function changeLanguage(){const v=document.getElementById('language').value;if(v==='en')toast('English interface is a demo setting; full translation is not enabled yet.');else toast('تم اختيار اللغة العربية')}
+renderCategories();renderProducts();renderAccount();renderMessages();
+</script>
+</body>
+</html>
